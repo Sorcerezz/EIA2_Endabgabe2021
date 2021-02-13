@@ -5,7 +5,7 @@ console.log("Database starting");
 let databaseURL: string = "mongodb+srv://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll?retryWrites=true&w=majority";
 let databaseName: string = "EIAll";
 let db: Mongo.Db;
-let students: Mongo.Collection;
+let fireworkDefinitions: Mongo.Collection;
 
 // running on heroku?
 // if (process.env.NODE_ENV == "production") {
@@ -24,13 +24,13 @@ function handleConnect(_e: Mongo.MongoError, _db: Mongo.Db): void {
     else {
         console.log("Connected to database!");
         db = _db.db(databaseName);
-        students = db.collection("students");
+        fireworkDefinitions = db.collection("fireworkDefinitions");
     }
 }
 
 export function insert(_doc: FireworkDefinition): void {
     // try insertion then activate callback "handleInsert"
-    students.insertOne(_doc, handleInsert);
+    fireworkDefinitions.insertOne(_doc, handleInsert);
 }
 
 // insertion-handler receives an error object as standard parameter
@@ -41,7 +41,7 @@ function handleInsert(_e: Mongo.MongoError): void {
 // try to fetch all documents from database, then activate callback
 export function findAll(_callback: Function): void {
     // cursor points to the retreived set of documents in memory
-    var cursor: Mongo.Cursor = students.find();
+    var cursor: Mongo.Cursor = fireworkDefinitions.find();
     // try to convert to array, then activate callback "prepareAnswer"
     cursor.toArray(prepareAnswer);
 
