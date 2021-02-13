@@ -1,0 +1,63 @@
+html {
+    height: 100%;
+    min-height: 100%
+  }
+
+header {
+    width: 100%;
+}
+
+body {
+    height: 80%;
+    width: 100%;
+    margin: 0;
+}
+
+footer {
+    width: 100%;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
+}
+
+.nav {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav li {
+    display: inline-block;
+    font-size: 20px;
+    padding: 20px;
+  }
+
+  .navFirework li {
+    display: inline-block;
+    font-size: 20px;
+    padding: 4px;
+  }
+
+  .startButton {
+      background-color: cadetblue;
+      width: 100px;
+      height: 60px;
+  }
+
+  .startButton:active {
+    background-color: coral;
+    width: 100px;
+    height: 60px;
+}

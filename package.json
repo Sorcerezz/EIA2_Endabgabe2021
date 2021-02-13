@@ -1,0 +1,19 @@
+{
+    "name": "fireworkserver",
+    "version": "1.0.0",
+    "description": "EIA2 Abschlussaufgabe",
+    "author": "Jasmin Walther",
+    "main": "Server.js",
+    "scripts": {
+        "start": "node Server/Server.js"
+    },
+    "engines": {
+        "node": "14.15.4"
+    },
+    "dependencies": {
+        "mongodb": "^3.6.4"
+    },
+    "devDependencies": {
+        "@types/node": "^14.14.27"
+    }
+}
