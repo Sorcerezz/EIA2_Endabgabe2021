@@ -2,17 +2,17 @@ import * as Mongo from "mongodb";
 
 console.log("Database starting");
 
-let databaseURL: string = "mongodb://localhost:27017";
-let databaseName: string = "Test";
+let databaseURL: string = "mongodb://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll";
+let databaseName: string = "EIAll";
 let db: Mongo.Db;
 let students: Mongo.Collection;
 
 // running on heroku?
-if (process.env.NODE_ENV == "production") {
-    //    databaseURL = "mongodb://username:password@hostname:port/database";
-    databaseURL = "mongodb://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll";
-    databaseName = "EIAll";
-}
+// if (process.env.NODE_ENV == "production") {
+//     //    databaseURL = "mongodb://username:password@hostname:port/database";
+//     databaseURL = "mongodb://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll";
+//     databaseName = "EIAll";
+// }
 
 // try to connect to database, then activate callback "handleConnect" 
 Mongo.MongoClient.connect(databaseURL, handleConnect);

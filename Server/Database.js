@@ -3,16 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.findAll = exports.insert = void 0;
 const Mongo = require("mongodb");
 console.log("Database starting");
-let databaseURL = "mongodb://localhost:27017";
-let databaseName = "Test";
+let databaseURL = "mongodb://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll";
+let databaseName = "EIAll";
 let db;
 let students;
 // running on heroku?
-if (process.env.NODE_ENV == "production") {
-    //    databaseURL = "mongodb://username:password@hostname:port/database";
-    databaseURL = "mongodb://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll";
-    databaseName = "EIAll";
-}
+// if (process.env.NODE_ENV == "production") {
+//     //    databaseURL = "mongodb://username:password@hostname:port/database";
+//     databaseURL = "mongodb://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll";
+//     databaseName = "EIAll";
+// }
 // try to connect to database, then activate callback "handleConnect" 
 Mongo.MongoClient.connect(databaseURL, handleConnect);
 // connect-handler receives two standard parameters, an error object and a database object
