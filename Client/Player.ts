@@ -6,7 +6,6 @@ namespace EIA2 {
     let selectedFireworkDefinition: FireworkDefinition;
 
     function init(_event: Event): void {
-
         let container: HTMLElement = document.getElementById('fireworks');
 
         // TEST

@@ -1,14 +1,15 @@
 import * as Database from "./Database";
 import * as querystring from 'querystring';
 import { createServer, IncomingMessage, Server, ServerResponse } from "http";
+var http = require('http');
 
 console.log("Server starting");
 
 let port: number = parseInt(process.env.PORT);
-if (port == undefined)
+if (port == undefined || !(port > 0 && port <= 65536))
     port = 8100;
 
-let server: Server = createServer();
+let server = http.createServer();
 server.addListener("listening", handleListen);
 server.addListener("request", handleRequest);
 server.listen(port);
