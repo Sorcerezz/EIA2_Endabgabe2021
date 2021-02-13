@@ -3,10 +3,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Database = require("./Database");
 const querystring = require("querystring");
 var http = require('http');
+const fs = require('fs');
+const path = require('path');
 console.log("Server starting");
 let port = parseInt(process.env.PORT);
 if (port == undefined || !(port > 0 && port <= 65536))
     port = 8100;
+const publicFolder = process.argv.length > 2 ? process.argv[2] : '.';
+const mediaTypes = {
+    zip: 'application/zip',
+    jpg: 'image/jpeg',
+    html: 'text/html',
+    css: 'text/css',
+    js: 'application/javascript',
+    ts: 'application/typescript',
+    map: 'application/octet-stream',
+};
 let server = http.createServer();
 server.addListener("listening", handleListen);
 server.addListener("request", handleRequest);
@@ -36,7 +48,20 @@ function handleRequest(_request, _response) {
     var command = query["command"];
     var parts = _request.url.split('?');
     if ((parts === null || parts === void 0 ? void 0 : parts.length) < 2) {
-        respond(_response, "Invalid query");
+        const filepath = path.join(publicFolder, _request.url);
+        fs.readFile(filepath, function (err, data) {
+            if (err) {
+                _response.statusCode = 404;
+                return _response.end('File not found or you made an invalid request.');
+            }
+            let mediaType = 'text/html';
+            const ext = path.extname(filepath);
+            if (ext.length > 0 && mediaTypes.hasOwnProperty(ext.slice(1))) {
+                mediaType = mediaTypes[ext.slice(1)];
+            }
+            _response.setHeader('Content-Type', mediaType);
+            _response.end(data);
+        });
         return;
     }
     var parameters = new Parameters();
