@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.findAll = exports.insert = void 0;
 const Mongo = require("mongodb");
 console.log("Database starting");
-let databaseURL = "mongodb://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll";
+let databaseURL = "mongodb+srv://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll?retryWrites=true&w=majority";
 let databaseName = "EIAll";
 let db;
 let students;

@@ -2,7 +2,7 @@ import * as Mongo from "mongodb";
 
 console.log("Database starting");
 
-let databaseURL: string = "mongodb://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll";
+let databaseURL: string = "mongodb+srv://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll?retryWrites=true&w=majority";
 let databaseName: string = "EIAll";
 let db: Mongo.Db;
 let students: Mongo.Collection;
