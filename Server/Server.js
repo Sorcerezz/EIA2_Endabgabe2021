@@ -43,7 +43,6 @@ class Parameters {
 function handleRequest(_request, _response) {
     console.log("Request received");
     var query = querystring.parse(_request.url);
-    var command = query["command"];
     var parts = _request.url.split('?');
     if ((parts === null || parts === void 0 ? void 0 : parts.length) < 2) {
         const filepath = path.join(publicFolder, _request.url);

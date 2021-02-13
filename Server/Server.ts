@@ -54,7 +54,6 @@ function handleRequest(_request: IncomingMessage, _response: ServerResponse): vo
     console.log("Request received");
 
     var query: querystring.ParsedUrlQuery = querystring.parse(_request.url);
-    var command: string = <string>query["command"];
 
     var parts: string[] = _request.url.split('?');
     if (parts?.length < 2) {
