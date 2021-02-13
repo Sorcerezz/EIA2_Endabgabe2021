@@ -50,6 +50,7 @@ function handleRequest(_request, _response) {
         try {
             fs.readFile(filepath, function (err, data) {
                 if (err) {
+                    _response.setHeader("Access-Control-Allow-Origin", "*");
                     _response.statusCode = 404;
                     return _response.end('File not found or you made an invalid request.');
                 }
@@ -58,6 +59,7 @@ function handleRequest(_request, _response) {
                 if (ext.length > 0 && mediaTypes.hasOwnProperty(ext.slice(1))) {
                     mediaType = mediaTypes[ext.slice(1)];
                 }
+                _response.setHeader("Access-Control-Allow-Origin", "*");
                 _response.setHeader('Content-Type', mediaType);
                 _response.end(data);
             });

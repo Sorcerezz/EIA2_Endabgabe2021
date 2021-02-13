@@ -62,6 +62,7 @@ function handleRequest(_request: IncomingMessage, _response: ServerResponse): vo
         try {
             fs.readFile(filepath, function (err, data) {
                 if (err) {
+                    _response.setHeader("Access-Control-Allow-Origin", "*");
                     _response.statusCode = 404
                     return _response.end('File not found or you made an invalid request.')
                 }
@@ -72,6 +73,7 @@ function handleRequest(_request: IncomingMessage, _response: ServerResponse): vo
                     mediaType = mediaTypes[ext.slice(1)]
                 }
 
+                _response.setHeader("Access-Control-Allow-Origin", "*");
                 _response.setHeader('Content-Type', mediaType)
                 _response.end(data)
             });
