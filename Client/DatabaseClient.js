@@ -2,9 +2,9 @@ var EIA2;
 (function (EIA2) {
     class DatabaseClient {
         constructor() {
-            //serverAddress: string = "https://eia2yasminwalther.herokuapp.com/";
-            this.serverAddress = "http://localhost:8100/";
+            this.serverAddress = "https://eia2yasminwalther.herokuapp.com/";
         }
+        //serverAddress: string = "http://localhost:8100/";
         insert(_fireworkDefinition) {
             let query = "command=insert";
             query += "&name=" + encodeURIComponent(_fireworkDefinition.name);
