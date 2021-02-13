@@ -41,7 +41,11 @@ var EIA2;
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 let responseAsJson = JSON.parse(xhr.response);
                 console.log(responseAsJson);
-                var customEvent = new CustomEvent("refreshFireworkDefinition", { detail: responseAsJson });
+                var array = [];
+                if (Array.isArray(responseAsJson)) {
+                    array = responseAsJson;
+                }
+                var customEvent = new CustomEvent("refreshFireworkDefinition", { detail: array });
                 window.dispatchEvent(customEvent);
             }
         }
