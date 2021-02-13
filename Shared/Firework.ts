@@ -50,7 +50,7 @@ namespace EIA2 {
         }
 
         public emitParticles(): void {
-            for (let i: number = 0; i < 2; i++) {
+            for (let i: number = 0; i < 1; i++) {
                 let particle: Particle = new Particle(this.fireworkDefinition?.tailColor);
                 particle.start(this.position);
             }

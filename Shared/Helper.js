@@ -39,6 +39,9 @@ var EIA2;
         }
         static hexToRgba(_hex, _alpha) {
             var parts = Helper.hexToRgb(_hex);
+            if (parts == null) {
+                return '#000000';
+            }
             return 'rgba(' + parts.r + ',' + parts.g + ',' + parts.b + ',' + _alpha + ')';
         }
     }

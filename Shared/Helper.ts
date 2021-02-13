@@ -49,6 +49,9 @@ namespace EIA2 {
 
         public static hexToRgba(_hex: string, _alpha: number): any {
             var parts = Helper.hexToRgb(_hex);
+            if (parts == null) {
+                return '#000000';
+            }
             return 'rgba(' + parts.r + ',' + parts.g + ',' + parts.b + ',' + _alpha + ')';
         }
     }

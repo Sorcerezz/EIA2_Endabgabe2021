@@ -43,7 +43,7 @@ var EIA2;
         }
         emitParticles() {
             var _a;
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < 1; i++) {
                 let particle = new EIA2.Particle((_a = this.fireworkDefinition) === null || _a === void 0 ? void 0 : _a.tailColor);
                 particle.start(this.position);
             }

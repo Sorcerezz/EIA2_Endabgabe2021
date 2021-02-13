@@ -3,32 +3,15 @@ namespace EIA2 {
 
     let crc2: CanvasRenderingContext2D;
     let objects: BaseObject[] = [];
+    let fireworkDefinitions: FireworkDefinition[];
     let selectedFireworkDefinition: FireworkDefinition;
+    let databaseClient: DatabaseClient;
 
     function init(_event: Event): void {
-        let container: HTMLElement = document.getElementById('fireworks');
 
-        // TEST
-        selectedFireworkDefinition = new FireworkDefinition();
-        selectedFireworkDefinition.headColor = "green";
-        selectedFireworkDefinition.innerExplosionColor = "#ff0000";
-        selectedFireworkDefinition.outerExplosionColor = "#00ff00";
-        selectedFireworkDefinition.innerExplosionRadius = 50;
-        selectedFireworkDefinition.outerExplosionRadius = 150;
-        selectedFireworkDefinition.duration = 4000;
 
-        // TODO FOR
-        let li: HTMLElement = document.createElement("li");
-        let button: HTMLButtonElement = document.createElement("button");
-        button.textContent = "Feuerwerk";
-        button.classList.add("startButton");
-        button.setAttribute("fireworkDefinition", "TODO");
-        button.addEventListener('click', () => {
-
-        });
-        li.appendChild(button);
-        container.appendChild(li);
-        // END FOR
+        databaseClient = new DatabaseClient();
+        databaseClient.refresh();
 
         let canvas: HTMLCanvasElement = Helper.canvas();
         crc2 = canvas.getContext("2d");
@@ -39,10 +22,12 @@ namespace EIA2 {
             const y = _e.offsetY;
             let startPosition: Vector2D = new Vector2D(x, y);
 
-            let firework: Firework = new Firework(selectedFireworkDefinition);
-            firework.position = Helper.fireworkStartPosition();
-            firework.start(startPosition);
-            firework.attach();
+            if (selectedFireworkDefinition != null) {
+                let firework: Firework = new Firework(selectedFireworkDefinition);
+                firework.position = Helper.fireworkStartPosition();
+                firework.start(startPosition);
+                firework.attach();
+            }
         });
 
         window.addEventListener('destroyObject', (_e: CustomEvent) => {
@@ -50,7 +35,6 @@ namespace EIA2 {
             if (object != null) {
                 let index = objects.indexOf(object);
                 if (index !== -1) {
-                    console.log("Destroy object " + object);
                     objects.splice(index, 1);
                 }
             }
@@ -61,6 +45,34 @@ namespace EIA2 {
             if (object != null) {
                 objects.push(object);
             }
+        });
+
+        window.addEventListener('fireworkDefinitionSaved', (_e: CustomEvent) => {
+            console.log("Yay saved!");
+        });
+
+        window.addEventListener('refreshFireworkDefinition', (_e: CustomEvent) => {
+            fireworkDefinitions = _e.detail;
+
+            let container: HTMLElement = document.getElementById('fireworks');
+            fireworkDefinitions.forEach((_fireworkDefinition: FireworkDefinition) => {
+                let li: HTMLElement = document.createElement("li");
+                let button: HTMLButtonElement = document.createElement("button");
+                button.textContent = _fireworkDefinition.name;
+                button.classList.add("startButton");
+                button.setAttribute("fireworkId", _fireworkDefinition._id);
+                button.addEventListener('click', (_e: MouseEvent) => {
+                    let sender: HTMLButtonElement = <HTMLButtonElement>_e.target;
+                    var id: string = sender.getAttribute("fireworkId");
+                    var items: FireworkDefinition[] = fireworkDefinitions.filter((_fw: FireworkDefinition) => _fw._id == id);
+                    if (items?.length > 0) {
+                        selectedFireworkDefinition = items[0];
+                    }
+                });
+                li.appendChild(button);
+                container.appendChild(li);
+            });
+
         });
 
         loop();

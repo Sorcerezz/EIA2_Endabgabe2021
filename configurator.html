@@ -1,0 +1,80 @@
+<!doctype html>
+
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Feuerwerk Player</title>
+    <meta name="description" content="EIA 2 Endabgabe - Jasmin Walther">
+    <meta name="author" content="Jasmin Walther">
+
+    <link rel="stylesheet" href="Shared/style.css">
+
+</head>
+
+<body>
+    <header>
+        <ul class="nav">
+            <li><a href="configurator.html">Konfigurator</a></li>
+            <li><a href="player.html">Player</a></li>
+        </ul>
+    </header>
+    <main class="">
+        <h1>Konfigurator</h1>
+        <div class="item-list">
+            <h2>Feuerwerksliste</h2>
+            <ul id="list">
+
+            </ul>
+        </div>
+        <div class="item-editor">
+            <form>
+                <div class="form-row">
+                    <label>Name</label>
+                    <input id="name" type="text" name="name"></input>
+                </div>
+                <div class="form-row">
+                    <label>Raketenfarbe (#FFFFFF)</label>
+                    <input id="headColor" type="text" name="headColor"></input>
+                </div>
+                <div class="form-row">
+                    <label>Schweiffarbe (#FFFFFF)</label>
+                    <input id="tailColor" type="text" name="tailColor"></input>
+                </div>
+                <div class="form-row">
+                    <label>Farbe der inneren Explosion (#FFFFFF)</label>
+                    <input id="innerExplosionColor" type="text" name="innerExplosionColor"></input>
+                </div>
+                <div class="form-row">
+                    <label>Radius der inneren Explosion</label>
+                    <input id="innerExplosionRadius" type="number" name="innerExplosionRadius" min="1"
+                        max="100"></input>
+                </div>
+                <div class="form-row">
+                    <label>Farbe der äußeren Explosion (#FFFFFF)</label>
+                    <input id="outerExplosionColor" type="text" name="outerExplosionColor"></input>
+                </div>
+                <div class="form-row">
+                    <label>Radius der äußeren Explosion</label>
+                    <input id="outerExplosionRadius" type="number" name="outerExplosionRadius" min="1"
+                        max="100"></input>
+                </div>
+                <div class="form-row">
+                    <label>Animationsdauer in ms</label>
+                    <input id="duration" type="number" name="duration" min="1000" max="10000"></input>
+                </div>
+                <div class="form-row">
+                    <button id="newButton" type="button">Neu</button>
+                    <button id="saveButton" type="button">Speichern</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="Shared/FireworkDefinition.js"></script>
+    <script src="Client/DatabaseClient.js"></script>
+    <script src="Client/Configurator.js"></script>
+</body>
+
+</html>

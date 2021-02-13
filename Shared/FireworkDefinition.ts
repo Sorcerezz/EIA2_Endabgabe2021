@@ -1,6 +1,7 @@
 
 namespace EIA2 {
     export class FireworkDefinition {
+        _id: string;
         name: string;
         headColor: string;
         tailColor: string;
