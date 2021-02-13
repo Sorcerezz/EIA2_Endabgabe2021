@@ -1,24 +1,22 @@
-import * as Mongo from "mongodb";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findAll = exports.insert = void 0;
+const Mongo = require("mongodb");
 console.log("Database starting");
-
-let databaseURL: string = "mongodb://localhost:27017";
-let databaseName: string = "Test";
-let db: Mongo.Db;
-let students: Mongo.Collection;
-
+let databaseURL = "mongodb://localhost:27017";
+let databaseName = "Test";
+let db;
+let students;
 // running on heroku?
 if (process.env.NODE_ENV == "production") {
     //    databaseURL = "mongodb://username:password@hostname:port/database";
     databaseURL = "mongodb://eia2:EI3YUugClITD2pNH@eiall.sdwaz.mongodb.net/EIAll";
     databaseName = "EIAll";
 }
-
 // try to connect to database, then activate callback "handleConnect" 
 Mongo.MongoClient.connect(databaseURL, handleConnect);
-
 // connect-handler receives two standard parameters, an error object and a database object
-function handleConnect(_e: Mongo.MongoError, _db: Mongo.Db): void {
+function handleConnect(_e, _db) {
     if (_e)
         console.log("Unable to connect to database, error: ", _e);
     else {
@@ -27,27 +25,24 @@ function handleConnect(_e: Mongo.MongoError, _db: Mongo.Db): void {
         students = db.collection("students");
     }
 }
-
-export function insert(_doc: FireworkDefinition): void {
+function insert(_doc) {
     // try insertion then activate callback "handleInsert"
     students.insertOne(_doc, handleInsert);
 }
-
+exports.insert = insert;
 // insertion-handler receives an error object as standard parameter
-function handleInsert(_e: Mongo.MongoError): void {
+function handleInsert(_e) {
     console.log("Database insertion returned -> " + _e);
 }
-
 // try to fetch all documents from database, then activate callback
-export function findAll(_callback: Function): void {
+function findAll(_callback) {
     // cursor points to the retreived set of documents in memory
-    var cursor: Mongo.Cursor = students.find();
+    var cursor = students.find();
     // try to convert to array, then activate callback "prepareAnswer"
     cursor.toArray(prepareAnswer);
-
     // toArray-handler receives two standard parameters, an error object and the array
     // implemented as inner function, so _callback is in scope
-    function prepareAnswer(_e: Mongo.MongoError, fireworkDefinitionArray: FireworkDefinition[]): void {
+    function prepareAnswer(_e, fireworkDefinitionArray) {
         if (_e)
             _callback("Error" + _e);
         else
@@ -55,3 +50,5 @@ export function findAll(_callback: Function): void {
             _callback(JSON.stringify(fireworkDefinitionArray));
     }
 }
+exports.findAll = findAll;
+//# sourceMappingURL=Database.js.map
