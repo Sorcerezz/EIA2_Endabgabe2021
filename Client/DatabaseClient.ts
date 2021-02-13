@@ -1,8 +1,8 @@
 namespace EIA2 {
 
     export class DatabaseClient {
-        serverAddress: string = "https://eia2yasminwalther.herokuapp.com/";
-        //serverAddress: string = "http://localhost:8100/";
+        //serverAddress: string = "https://eia2yasminwalther.herokuapp.com/";
+        serverAddress: string = "http://localhost:8100/";
 
         public insert(_fireworkDefinition: FireworkDefinition): void {
             let query: string = "command=insert";
