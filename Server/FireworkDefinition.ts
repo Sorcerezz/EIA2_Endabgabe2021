@@ -1,4 +1,3 @@
-
 interface FireworkDefinition {
     name: string;
     headColor: string;

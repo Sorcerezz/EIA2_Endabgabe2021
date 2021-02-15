@@ -7,15 +7,15 @@ namespace EIA2 {
         databaseClient = new DatabaseClient();
         databaseClient.refresh();
 
-        window.addEventListener('fireworkDefinitionSaved', (_e: CustomEvent) => {
-            console.log("Yay saved!");
+        window.addEventListener("fireworkDefinitionSaved", (_e: CustomEvent) => {
+            console.log("Roket saved!");
         });
 
-        window.addEventListener('refreshFireworkDefinition', (_e: CustomEvent) => {
+        window.addEventListener("refreshFireworkDefinition", (_e: CustomEvent) => {
             fireworkDefinitions = _e.detail;
 
-            let container: HTMLElement = document.getElementById('list');
-            container.innerHTML = '';
+            let container: HTMLElement = document.getElementById("list");
+            container.innerHTML = "";
             fireworkDefinitions.forEach((_fireworkDefinition: FireworkDefinition) => {
                 let li: HTMLElement = document.createElement("li");
                 let span: HTMLSpanElement = document.createElement("span");
@@ -23,12 +23,12 @@ namespace EIA2 {
                 span.setAttribute("fireworkId", _fireworkDefinition._id);
                 span.addEventListener("click", (_e: MouseEvent) => {
                     let sender: HTMLSpanElement = <HTMLSpanElement>_e.target;
-                    var id: string = sender.getAttribute("fireworkId");
-                    var items: FireworkDefinition[] = fireworkDefinitions.filter((_fw: FireworkDefinition) => _fw._id == id);
+                    let id: string = sender.getAttribute("fireworkId");
+                    let items: FireworkDefinition[] = fireworkDefinitions.filter((_fw: FireworkDefinition) => _fw._id == id);
                     if (items?.length > 0) {
-                        var item = items[0];
+                        let item = items[0];
 
-                        var input: HTMLInputElement = <HTMLInputElement>document.getElementById("name");
+                        let input: HTMLInputElement = <HTMLInputElement>document.getElementById("name");
                         input.value = item.name;
 
                         input = <HTMLInputElement>document.getElementById("headColor");
@@ -41,16 +41,16 @@ namespace EIA2 {
                         input.value = item.innerExplosionColor;
 
                         input = <HTMLInputElement>document.getElementById("innerExplosionRadius");
-                        input.value = item.innerExplosionRadius + '';
+                        input.value = item.innerExplosionRadius + "";
 
                         input = <HTMLInputElement>document.getElementById("outerExplosionColor");
                         input.value = item.outerExplosionColor;
 
                         input = <HTMLInputElement>document.getElementById("outerExplosionRadius");
-                        input.value = item.outerExplosionRadius + '';
+                        input.value = item.outerExplosionRadius + "";
 
                         input = <HTMLInputElement>document.getElementById("duration");
-                        input.value = item.duration + '';
+                        input.value = item.duration + "";
                     }
                 });
 
@@ -58,9 +58,9 @@ namespace EIA2 {
                 container.appendChild(li);
             });
 
-            let saveButton: HTMLElement = document.getElementById('saveButton');
+            let saveButton: HTMLElement = document.getElementById("saveButton");
             saveButton.addEventListener("click", () => {
-                var item: FireworkDefinition = new FireworkDefinition();
+                let item: FireworkDefinition = new FireworkDefinition();
                 item.name = (<HTMLInputElement>document.getElementById("name")).value;
                 item.headColor = (<HTMLInputElement>document.getElementById("headColor")).value;
                 item.tailColor = (<HTMLInputElement>document.getElementById("tailColor")).value;
@@ -82,9 +82,9 @@ namespace EIA2 {
                 databaseClient.insert(item);
             });
 
-            let newButton: HTMLElement = document.getElementById('newButton');
+            let newButton: HTMLElement = document.getElementById("newButton");
             newButton.addEventListener("click", () => {
-                var input: HTMLInputElement = <HTMLInputElement>document.getElementById("name");
+                let input: HTMLInputElement = <HTMLInputElement>document.getElementById("name");
                 input.value = "";
 
                 input = <HTMLInputElement>document.getElementById("headColor");
@@ -109,10 +109,10 @@ namespace EIA2 {
                 input.value = "";
             });
 
-            window.addEventListener('fireworkDefinitionSaved', (_e: CustomEvent) => {
+            window.addEventListener("fireworkDefinitionSaved", (_e: CustomEvent) => {
                 console.log("Item saved!");
-                let container: HTMLElement = document.getElementById('list');
-                container.innerHTML = 'Speichert...';
+                let container: HTMLElement = document.getElementById("list");
+                container.innerHTML = "Speichert...";
                 databaseClient.refresh();
             });
         });

@@ -17,7 +17,7 @@ namespace EIA2 {
         crc2 = canvas.getContext("2d");
         new Launcher().attach();
 
-        canvas.addEventListener('click', (_e: MouseEvent) => {
+        canvas.addEventListener("click", (_e: MouseEvent) => {
             const x = _e.offsetX;
             const y = _e.offsetY;
             let startPosition: Vector2D = new Vector2D(x, y);
@@ -30,7 +30,7 @@ namespace EIA2 {
             }
         });
 
-        window.addEventListener('destroyObject', (_e: CustomEvent) => {
+        window.addEventListener("destroyObject", (_e: CustomEvent) => {
             let object: BaseObject = _e.detail;
             if (object != null) {
                 let index = objects.indexOf(object);
@@ -40,28 +40,28 @@ namespace EIA2 {
             }
         });
 
-        window.addEventListener('attachObject', (_e: CustomEvent) => {
+        window.addEventListener("attachObject", (_e: CustomEvent) => {
             let object: BaseObject = _e.detail;
             if (object != null) {
                 objects.push(object);
             }
         });
 
-        window.addEventListener('fireworkDefinitionSaved', (_e: CustomEvent) => {
+        window.addEventListener("fireworkDefinitionSaved", (_e: CustomEvent) => {
             console.log("Yay saved!");
         });
 
-        window.addEventListener('refreshFireworkDefinition', (_e: CustomEvent) => {
+        window.addEventListener("refreshFireworkDefinition", (_e: CustomEvent) => {
             fireworkDefinitions = _e.detail;
 
-            let container: HTMLElement = document.getElementById('fireworks');
+            let container: HTMLElement = document.getElementById("fireworks");
             fireworkDefinitions.forEach((_fireworkDefinition: FireworkDefinition) => {
                 let li: HTMLElement = document.createElement("li");
                 let button: HTMLButtonElement = document.createElement("button");
                 button.textContent = _fireworkDefinition.name;
                 button.classList.add("startButton");
                 button.setAttribute("fireworkId", _fireworkDefinition._id);
-                button.addEventListener('click', (_e: MouseEvent) => {
+                button.addEventListener("click", (_e: MouseEvent) => {
                     let sender: HTMLButtonElement = <HTMLButtonElement>_e.target;
                     var id: string = sender.getAttribute("fireworkId");
                     var items: FireworkDefinition[] = fireworkDefinitions.filter((_fw: FireworkDefinition) => _fw._id == id);
@@ -90,6 +90,6 @@ namespace EIA2 {
             });
 
             loop();
-        }, Helper.msBetweenFrames);
+        },         Helper.msBetweenFrames);
     }
 }

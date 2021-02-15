@@ -34,4 +34,4 @@ namespace EIA2 {
             return 1 - this.getAlpha();
         }
     }
-}
+} 

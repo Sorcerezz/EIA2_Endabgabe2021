@@ -1,20 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Database = require("./Database");
-var http = require('http');
-const fs = require('fs');
-const path = require('path');
+let http = require("http");
+let fs = require("fs");
+let path = require("path");
 console.log("Server starting");
 let port = parseInt(process.env.PORT);
 if (port == undefined || !(port > 0 && port <= 65536))
     port = 8100;
-const publicFolder = process.argv.length > 2 ? process.argv[2] : '.';
-const mediaTypes = {
-    html: 'text/html',
-    css: 'text/css',
-    js: 'application/javascript',
-    ts: 'application/typescript',
-    map: 'application/octet-stream'
+let publicFolder = process.argv.length > 2 ? process.argv[2] : ".";
+let mediaTypes = {
+    html: "text/html",
+    css: "text/css",
+    js: "application/javascript",
+    ts: "application/typescript",
+    map: "application/octet-stream"
 };
 let server = http.createServer();
 server.addListener("listening", handleListen);
@@ -31,10 +31,9 @@ class Parameters {
         this.parameterPairs.push(_pair);
     }
     getValue(name) {
-        var _a;
-        var sub = this.parameterPairs.filter((_v) => _v.name == name);
-        if ((sub === null || sub === void 0 ? void 0 : sub.length) >= 1) {
-            return (_a = sub[0]) === null || _a === void 0 ? void 0 : _a.value;
+        let sub = this.parameterPairs.filter((_v) => _v.name == name);
+        if (sub ? .length >= 1 : ) {
+            return sub[0] ? .value : ;
         }
         return null;
     }
@@ -42,23 +41,23 @@ class Parameters {
 function handleRequest(_request, _response) {
     console.log("Request received");
     try {
-        var parts = _request.url.split('?');
-        if ((parts === null || parts === void 0 ? void 0 : parts.length) < 2) {
-            const filepath = path.join(publicFolder, _request.url);
+        let parts = _request.url.split("?");
+        if (parts ? .length < 2 : ) {
+            let filepath = path.join(publicFolder, _request.url);
             try {
                 fs.readFile(filepath, function (err, data) {
                     if (err) {
                         _response.setHeader("Access-Control-Allow-Origin", "*");
                         _response.statusCode = 404;
-                        return _response.end('File not found or you made an invalid request.');
+                        return _response.end("File not found or you made an invalid request.");
                     }
-                    let mediaType = 'text/html';
-                    const ext = path.extname(filepath);
+                    let mediaType = "text/html";
+                    let ext = path.extname(filepath);
                     if (ext.length > 0 && mediaTypes.hasOwnProperty(ext.slice(1))) {
                         mediaType = mediaTypes[ext.slice(1)];
                     }
                     _response.setHeader("Access-Control-Allow-Origin", "*");
-                    _response.setHeader('Content-Type', mediaType);
+                    _response.setHeader("Content-Type", mediaType);
                     _response.end(data);
                 });
             }
@@ -67,18 +66,18 @@ function handleRequest(_request, _response) {
             }
             return;
         }
-        var parameters = new Parameters();
-        var dataPart = parts[1];
-        var pairs = dataPart.split('&');
+        let parameters = new Parameters();
+        let dataPart = parts[1];
+        let pairs = dataPart.split("&");
         pairs.forEach((_pair) => {
-            var temp = _pair.split('=');
-            var pair = {
+            let temp = _pair.split("=");
+            let pair = {
                 name: temp[0],
                 value: decodeURIComponent(temp[1])
             };
             parameters.push(pair);
         });
-        var command = parameters.getValue("command");
+        let command = parameters.getValue("command");
         switch (command) {
             case "insert":
                 let fireworkDefinition = {
@@ -111,7 +110,7 @@ function handleRequest(_request, _response) {
     }
 }
 function respond(_response, _text) {
-    //console.log("Preparing response: " + _text);
+    console.log("Preparing response: " + _text);
     _response.setHeader("Access-Control-Allow-Origin", "*");
     _response.setHeader("content-type", "text/html; charset=utf-8");
     _response.write(_text);

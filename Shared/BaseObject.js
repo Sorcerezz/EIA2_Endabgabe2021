@@ -6,11 +6,11 @@ var EIA2;
             this.position = EIA2.Vector2D.zero();
         }
         attach() {
-            var customEvent = new CustomEvent("attachObject", { detail: this });
+            let customEvent = new CustomEvent("attachObject", { detail: this });
             window.dispatchEvent(customEvent);
         }
         destory() {
-            var customEvent = new CustomEvent("destroyObject", { detail: this });
+            let customEvent = new CustomEvent("destroyObject", { detail: this });
             window.dispatchEvent(customEvent);
         }
         move(_dt) {

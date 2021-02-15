@@ -1,9 +1,12 @@
 var EIA2;
 (function (EIA2) {
     class Firework extends EIA2.BaseObject {
-        constructor(_fireworkDefinition) {
-            super();
+        constructor() {
+            super(...arguments);
             this.animations = [];
+        }
+        letructor(_fireworkDefinition) {
+            super();
             this.fireworkDefinition = _fireworkDefinition;
             if (_fireworkDefinition != null) {
                 let innerAnimation = new EIA2.RadialAnimation(_fireworkDefinition.innerExplosionColor, _fireworkDefinition.innerExplosionRadius, _fireworkDefinition.duration);
@@ -18,9 +21,9 @@ var EIA2;
             this.speed = 100;
             console.log("Start: " + this.position.x + " " + this.position.y);
             console.log("Target: " + _endPosition.x + " " + _endPosition.y);
-            var direction = EIA2.Vector2D.direction(this.position, this.endPosition);
+            let direction = EIA2.Vector2D.direction(this.position, this.endPosition);
             console.log("Direction: " + direction.x + " " + direction.y);
-            var length = direction.length();
+            let length = direction.length();
             console.log("length: " + length);
             this.velocity = direction.normalize();
         }
@@ -42,18 +45,16 @@ var EIA2;
             }
         }
         emitParticles() {
-            var _a;
             for (let i = 0; i < 1; i++) {
-                let particle = new EIA2.Particle((_a = this.fireworkDefinition) === null || _a === void 0 ? void 0 : _a.tailColor);
+                let particle = new EIA2.Particle(this.fireworkDefinition ? .tailColor : );
                 particle.start(this.position);
             }
         }
         draw(_crc2) {
-            var _a;
-            const radius = 5;
+            let radius = 5;
             _crc2.beginPath();
             _crc2.arc(this.position.x, this.position.y, radius, 0, 2 * Math.PI, false);
-            _crc2.fillStyle = (_a = this.fireworkDefinition) === null || _a === void 0 ? void 0 : _a.headColor;
+            _crc2.fillStyle = this.fireworkDefinition ? .headColor : ;
             _crc2.fill();
             this.animations.forEach((animation) => {
                 animation.draw(_crc2);

@@ -5,7 +5,7 @@ namespace EIA2 {
         exploding: boolean;
         fireworkDefinition: FireworkDefinition;
 
-        constructor(_fireworkDefinition: FireworkDefinition) {
+        letructor(_fireworkDefinition: FireworkDefinition) {
             super();
             this.fireworkDefinition = _fireworkDefinition;
             if (_fireworkDefinition != null) {
@@ -23,9 +23,9 @@ namespace EIA2 {
             this.speed = 100;
             console.log("Start: " + this.position.x + " " + this.position.y);
             console.log("Target: " + _endPosition.x + " " + _endPosition.y);
-            var direction: Vector2D = Vector2D.direction(this.position, this.endPosition);
+            let direction: Vector2D = Vector2D.direction(this.position, this.endPosition);
             console.log("Direction: " + direction.x + " " + direction.y);
-            var length: number = direction.length();
+            let length: number = direction.length();
             console.log("length: " + length);
             this.velocity = direction.normalize();
         }
@@ -57,7 +57,7 @@ namespace EIA2 {
         }
 
         public draw(_crc2: CanvasRenderingContext2D): void {
-            const radius = 5;
+            let radius = 5;
 
             _crc2.beginPath();
             _crc2.arc(this.position.x, this.position.y, radius, 0, 2 * Math.PI, false);

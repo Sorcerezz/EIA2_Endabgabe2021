@@ -8,15 +8,11 @@ var EIA2;
         copy() {
             return new Vector2D(this.x, this.y);
         }
-        /**
-         * Vektor Addition
-         */
+        /**         * Vektor Addition */
         add(_v) {
             return new Vector2D(this.x + _v.x, this.y + _v.y);
         }
-        /**
-         * Richtungsvektor aus 2 Vektoren erzeugen. Die 2 Vektoren stellen eigentlich Punkte dar. v = v2 - v1
-         */
+        /**         * Richtungsvektor aus 2 Vektoren erzeugen. Die 2 Vektoren stellen eigentlich Punkte dar. v = v2 - v1*/
         static direction(_v1, _v2) {
             return new Vector2D(_v2.x - _v1.x, _v2.y - _v1.y);
         }
@@ -26,22 +22,16 @@ var EIA2;
         length() {
             return Math.sqrt(this.x * this.x + this.y * this.y);
         }
-        /**
-         * Distanz zwischen 2 Punkten
-         */
+        /**         * Distanz zwischen 2 Punkten         */
         static distance(_v1, _v2) {
             return Vector2D.direction(_v1, _v2).length();
         }
-        /**
-         * Vektor normieren. Normierter Vektor = Betrag = 1
-         */
+        /**         * Vektor normieren. Normierter Vektor = Betrag = 1         */
         normalize() {
             let length = this.length();
             return new Vector2D(this.x / length, this.y / length);
         }
-        /**
-         * Null Vektor
-         */
+        /**          * Null Vektor         */
         static zero() {
             return new Vector2D(0, 0);
         }
