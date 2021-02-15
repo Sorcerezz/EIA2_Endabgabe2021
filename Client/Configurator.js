@@ -6,13 +6,13 @@ var EIA2;
     function init(_event) {
         databaseClient = new EIA2.DatabaseClient();
         databaseClient.refresh();
-        window.addEventListener("fireworkDefinitionSaved", (_e) => {
-            console.log("Roket saved!");
+        window.addEventListener('fireworkDefinitionSaved', (_e) => {
+            console.log("Yay saved!");
         });
-        window.addEventListener("refreshFireworkDefinition", (_e) => {
+        window.addEventListener('refreshFireworkDefinition', (_e) => {
             fireworkDefinitions = _e.detail;
-            let container = document.getElementById("list");
-            container.innerHTML = "";
+            let container = document.getElementById('list');
+            container.innerHTML = '';
             fireworkDefinitions.forEach((_fireworkDefinition) => {
                 let li = document.createElement("li");
                 let span = document.createElement("span");
@@ -20,11 +20,11 @@ var EIA2;
                 span.setAttribute("fireworkId", _fireworkDefinition._id);
                 span.addEventListener("click", (_e) => {
                     let sender = _e.target;
-                    let id = sender.getAttribute("fireworkId");
-                    let items = fireworkDefinitions.filter((_fw) => _fw._id == id);
-                    if (items ? .length > 0 : ) {
-                        let item = items[0];
-                        let input = document.getElementById("name");
+                    var id = sender.getAttribute("fireworkId");
+                    var items = fireworkDefinitions.filter((_fw) => _fw._id == id);
+                    if ((items === null || items === void 0 ? void 0 : items.length) > 0) {
+                        var item = items[0];
+                        var input = document.getElementById("name");
                         input.value = item.name;
                         input = document.getElementById("headColor");
                         input.value = item.headColor;
@@ -33,21 +33,21 @@ var EIA2;
                         input = document.getElementById("innerExplosionColor");
                         input.value = item.innerExplosionColor;
                         input = document.getElementById("innerExplosionRadius");
-                        input.value = item.innerExplosionRadius + "";
+                        input.value = item.innerExplosionRadius + '';
                         input = document.getElementById("outerExplosionColor");
                         input.value = item.outerExplosionColor;
                         input = document.getElementById("outerExplosionRadius");
-                        input.value = item.outerExplosionRadius + "";
+                        input.value = item.outerExplosionRadius + '';
                         input = document.getElementById("duration");
-                        input.value = item.duration + "";
+                        input.value = item.duration + '';
                     }
                 });
                 li.appendChild(span);
                 container.appendChild(li);
             });
-            let saveButton = document.getElementById("saveButton");
+            let saveButton = document.getElementById('saveButton');
             saveButton.addEventListener("click", () => {
-                let item = new EIA2.FireworkDefinition();
+                var item = new EIA2.FireworkDefinition();
                 item.name = document.getElementById("name").value;
                 item.headColor = document.getElementById("headColor").value;
                 item.tailColor = document.getElementById("tailColor").value;
@@ -66,9 +66,9 @@ var EIA2;
                 }
                 databaseClient.insert(item);
             });
-            let newButton = document.getElementById("newButton");
+            let newButton = document.getElementById('newButton');
             newButton.addEventListener("click", () => {
-                let input = document.getElementById("name");
+                var input = document.getElementById("name");
                 input.value = "";
                 input = document.getElementById("headColor");
                 input.value = "";
@@ -85,10 +85,10 @@ var EIA2;
                 input = document.getElementById("duration");
                 input.value = "";
             });
-            window.addEventListener("fireworkDefinitionSaved", (_e) => {
+            window.addEventListener('fireworkDefinitionSaved', (_e) => {
                 console.log("Item saved!");
-                let container = document.getElementById("list");
-                container.innerHTML = "Speichert...";
+                let container = document.getElementById('list');
+                container.innerHTML = 'Speichert...';
                 databaseClient.refresh();
             });
         });

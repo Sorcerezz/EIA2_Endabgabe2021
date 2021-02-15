@@ -34,7 +34,7 @@ namespace EIA2 {
             let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 alert(xhr.response);
-                let customEvent: CustomEvent = new CustomEvent("fireworkDefinitionSaved");
+                var customEvent: CustomEvent = new CustomEvent("fireworkDefinitionSaved");
                 window.dispatchEvent(customEvent);
             }
         }
@@ -44,11 +44,11 @@ namespace EIA2 {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 let responseAsJson: JSON = JSON.parse(xhr.response);
                 console.log(responseAsJson);
-                let array = [];
+                var array = [];
                 if (Array.isArray(responseAsJson)) {
                     array = responseAsJson;
                 }
-                let customEvent: CustomEvent = new CustomEvent("refreshFireworkDefinition", { detail: array });
+                var customEvent: CustomEvent = new CustomEvent("refreshFireworkDefinition", { detail: array });
                 window.dispatchEvent(customEvent);
             }
         }

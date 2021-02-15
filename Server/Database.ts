@@ -41,7 +41,7 @@ function handleInsert(_e: Mongo.MongoError): void {
 // try to fetch all documents from database, then activate callback
 export function findAll(_callback: Function): void {
     // cursor points to the retreived set of documents in memory
-    let cursor: Mongo.Cursor = fireworkDefinitions.find();
+    var cursor: Mongo.Cursor = fireworkDefinitions.find();
     // try to convert to array, then activate callback "prepareAnswer"
     cursor.toArray(prepareAnswer);
 

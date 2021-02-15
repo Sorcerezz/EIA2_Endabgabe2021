@@ -11,12 +11,12 @@ namespace EIA2 {
         }
 
         public attach(): void {
-            let customEvent: CustomEvent = new CustomEvent("attachObject", { detail: this })
+            var customEvent: CustomEvent = new CustomEvent("attachObject", { detail: this })
             window.dispatchEvent(customEvent);
         }
 
         public destory(): void {
-            let customEvent: CustomEvent = new CustomEvent("destroyObject", { detail: this })
+            var customEvent: CustomEvent = new CustomEvent("destroyObject", { detail: this })
             window.dispatchEvent(customEvent);
         }
 

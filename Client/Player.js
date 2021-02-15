@@ -12,7 +12,7 @@ var EIA2;
         let canvas = EIA2.Helper.canvas();
         crc2 = canvas.getContext("2d");
         new EIA2.Launcher().attach();
-        canvas.addEventListener("click", (_e) => {
+        canvas.addEventListener('click', (_e) => {
             const x = _e.offsetX;
             const y = _e.offsetY;
             let startPosition = new EIA2.Vector2D(x, y);
@@ -23,7 +23,7 @@ var EIA2;
                 firework.attach();
             }
         });
-        window.addEventListener("destroyObject", (_e) => {
+        window.addEventListener('destroyObject', (_e) => {
             let object = _e.detail;
             if (object != null) {
                 let index = objects.indexOf(object);
@@ -32,29 +32,29 @@ var EIA2;
                 }
             }
         });
-        window.addEventListener("attachObject", (_e) => {
+        window.addEventListener('attachObject', (_e) => {
             let object = _e.detail;
             if (object != null) {
                 objects.push(object);
             }
         });
-        window.addEventListener("fireworkDefinitionSaved", (_e) => {
+        window.addEventListener('fireworkDefinitionSaved', (_e) => {
             console.log("Yay saved!");
         });
-        window.addEventListener("refreshFireworkDefinition", (_e) => {
+        window.addEventListener('refreshFireworkDefinition', (_e) => {
             fireworkDefinitions = _e.detail;
-            let container = document.getElementById("fireworks");
+            let container = document.getElementById('fireworks');
             fireworkDefinitions.forEach((_fireworkDefinition) => {
                 let li = document.createElement("li");
                 let button = document.createElement("button");
                 button.textContent = _fireworkDefinition.name;
                 button.classList.add("startButton");
                 button.setAttribute("fireworkId", _fireworkDefinition._id);
-                button.addEventListener("click", (_e) => {
+                button.addEventListener('click', (_e) => {
                     let sender = _e.target;
                     var id = sender.getAttribute("fireworkId");
                     var items = fireworkDefinitions.filter((_fw) => _fw._id == id);
-                    if (items ? .length > 0 : ) {
+                    if ((items === null || items === void 0 ? void 0 : items.length) > 0) {
                         selectedFireworkDefinition = items[0];
                     }
                 });

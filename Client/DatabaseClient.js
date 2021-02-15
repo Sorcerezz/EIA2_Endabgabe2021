@@ -32,7 +32,7 @@ var EIA2;
             let xhr = _event.target;
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 alert(xhr.response);
-                let customEvent = new CustomEvent("fireworkDefinitionSaved");
+                var customEvent = new CustomEvent("fireworkDefinitionSaved");
                 window.dispatchEvent(customEvent);
             }
         }
@@ -41,11 +41,11 @@ var EIA2;
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 let responseAsJson = JSON.parse(xhr.response);
                 console.log(responseAsJson);
-                let array = [];
+                var array = [];
                 if (Array.isArray(responseAsJson)) {
                     array = responseAsJson;
                 }
-                let customEvent = new CustomEvent("refreshFireworkDefinition", { detail: array });
+                var customEvent = new CustomEvent("refreshFireworkDefinition", { detail: array });
                 window.dispatchEvent(customEvent);
             }
         }
