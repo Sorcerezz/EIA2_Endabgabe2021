@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto');
+
 html {
     height: 100%;
     min-height: 100%
@@ -7,28 +9,14 @@ header {
     width: 100%;
 }
 
-body {
-    height: 80%;
-    width: 100%;
-    margin: 0;
-}
-
-footer {
-    width: 100%;
-}
-
-main {
-    height: 100%;
-    width: 100%;
-}
-
-.bg-black {
-    background-color: black;
-}
-
-canvas {
-    height: 100%;
-    width: 100%;
+h1 {
+    margin-top: -3px;
+    margin-bottom: -20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #D0CEBA;
+    color: #141529;
 }
 
 .nav {
@@ -36,6 +24,8 @@ canvas {
     text-align: center;
     margin: 0;
     padding: 0;
+    background-color: #D0CEBA;
+    font-family: 'Roboto', sans-serif;
   }
   
   .nav li {
@@ -51,15 +41,63 @@ canvas {
   }
 
   .startButton {
-      background-color: cadetblue;
-      width: 100px;
-      height: 60px;
+    text-transform: uppercase;
+    background-color:#542344;
+    color: #D0CEBA;
+    width: 100px;
+    height: 60px;
   }
 
   .startButton:active {
-    background-color: coral;
+    text-transform: uppercase;
+    background-color: #5C6D70;
     width: 100px;
     height: 60px;
+}
+
+body {
+    height: 80%;
+    width: 100%;
+    margin: 0;
+    background-color: black;
+    color: #edeae8;
+    font-family: 'Roboto', sans-serif;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+}
+
+.editor {
+    margin-left: 28%;
+}
+
+label {
+    display: inline-block;
+    width: 550px;
+}
+
+#a {
+    margin-top: 20px;
+}
+
+#start {
+    margin-top: 30px;
+    text-align: center;
+}
+
+footer {
+    width: 100%;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
 }
 
 input{
