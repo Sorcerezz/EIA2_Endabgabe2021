@@ -6,7 +6,7 @@ namespace EIA2 {
         }
 
         public draw(_crc2: CanvasRenderingContext2D): void {
-            const radius = 25;
+            const radius: number = 25;
 
             _crc2.beginPath();
             _crc2.arc(this.position.x, this.position.y, radius, 0, 2 * Math.PI, false);
